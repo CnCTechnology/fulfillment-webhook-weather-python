@@ -134,19 +134,32 @@ def processOrderPizzaRequest(req):
 
     PaymentMode = parameters.get("paymentMode-Entity")
     speechText= speechText + "PaymentMode: " + str(PaymentMode)+"\n"
+
+    Order_Food_Toppings2 =parameters.get("order_food_toppings2")    
+    
+
     
     Order_Food_Size = parameters.get("order_Food_Size")    
     Order_Food = parameters.get("order_food")
-    speechText= speechText +  str(Order_Food_Size) + " " + str(Order_Food) + "\n"
+    Order_Food_Toppings=parameters.get("order_food_toppings")
+    Order_Food_Toppings+=Order_Food_Toppings2
+    toppingString=','.join(map(str, Order_Food_Toppings)) 
+    speechText= speechText +  str(Order_Food_Size) + " " + str(Order_Food) + "\n"+ toppingString
     
     Conjunction = parameters.get("conjunction-entity")    
 
     Order_Food_Size1 = parameters.get("order_Food_Size1")
     Order_Food1 = parameters.get("order_food1")
+    Order_Food_Toppings1 =parameters.get("order_food_toppings1")
+    Order_Food_Toppings1+=Order_Food_Toppings2
+    toppingString1 =','.join(map(str, Order_Food_Toppings1)) 
+    
     if Conjunction != None:
-        speechText= speechText +  str(Order_Food_Size1) + " " + str(Order_Food1) + "\n"
+        speechText= speechText +  str(Order_Food_Size1) + " " + str(Order_Food1) + "\n"+ toppingString1
 
     pronoun = parameters.get("pronoun-Entity")
+
+   
 
 
     return orderPizzaResult(speechText)

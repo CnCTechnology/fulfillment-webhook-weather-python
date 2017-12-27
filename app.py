@@ -53,13 +53,7 @@ def processRequest(req):
     if req.get("result").get("action") == "yahooWeatherForecast":        
         return processYahooWeatherForecast(req)
     elif req.get("result").get("action") == "pizzaOrderWithConjunction":      
-        return {
-        "speech": "Your pizza on it's way.",
-        "displayText": "Your pizza on it's way.",
-        # "data": data,
-        # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-        }
+        return processOrderPizzaRequest(req)
     else:
         return{}
     
@@ -125,7 +119,20 @@ def makeWebhookResult(data):
         "source": "apiai-weather-webhook-sample"
     }
 
+############################################ Order Pizza Intention #############################
+def processOrderPizzaRequest(req):
+    speechText="This is test result"
+    return orderPizzaResult(speechText)
 
+def orderPizzaResult(speech):
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
+################################################ Main Function ##################################
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 

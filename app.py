@@ -121,7 +121,34 @@ def makeWebhookResult(data):
 
 ############################################ Order Pizza Intention #############################
 def processOrderPizzaRequest(req):
-    speechText="This is test result"
+    
+
+    result = req.get("result")
+    
+    parameters = result.get("parameters")
+    DeliveryPickup = parameters.get("Delivery-Pickup-Entity")
+    speechText= str(DeliveryPickup[0])+"\n"
+
+    Address = parameters.get("Address-Entity")
+    speechText= speechText + "Address: " + str(Address)+"\n"
+
+    PaymentMode = parameters.get("paymentMode-Entity")
+    speechText= speechText + "PaymentMode: " + str(PaymentMode)+"\n"
+    
+    Order_Food_Size = parameters.get("order_Food_Size")    
+    Order_Food = parameters.get("order_food")
+    speechText= speechText +  str(Order_Food_Size) + " " + str(Order_Food) + "\n"
+    
+    Conjunction = parameters.get("conjunction-entity")    
+
+    Order_Food_Size1 = parameters.get("order_Food_Size1")
+    Order_Food1 = parameters.get("order_food1")
+    if Conjunction != None:
+        speechText= speechText +  str(Order_Food_Size1) + " " + str(Order_Food1) + "\n"
+
+    pronoun = parameters.get("pronoun-Entity")
+
+
     return orderPizzaResult(speechText)
 
 def orderPizzaResult(speech):

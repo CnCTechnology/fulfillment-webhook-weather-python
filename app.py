@@ -52,7 +52,7 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") == "yahooWeatherForecast":        
         return processYahooWeatherForecast(req)
-    else if req.get("result").get("action") == "pizzaOrderWithConjunction":      
+    elif req.get("result").get("action") == "pizzaOrderWithConjunction":      
         return {
         "speech": "Your pizza on it's way.",
         "displayText": "Your pizza on it's way.",

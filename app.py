@@ -130,10 +130,10 @@ def processOrderPizzaRequest(req):
     speechText= str(DeliveryPickup[0])+"\n"
 
     Address = parameters.get("Address-Entity")
-    speechText= speechText + "Address: " + str(Address)+"\n"
+    speechText="\n " + speechText + "Address: " + str(Address)+"\n"
 
     PaymentMode = parameters.get("paymentMode-Entity")
-    speechText= speechText + "PaymentMode: " + str(PaymentMode)+"\n"
+    speechText= "\n " + speechText + "PaymentMode: " + str(PaymentMode)+"\n"
 
     Order_Food_Toppings2 =parameters.get("order_food_toppings2")    
     
@@ -144,7 +144,7 @@ def processOrderPizzaRequest(req):
     Order_Food_Toppings=parameters.get("order_food_toppings")
     Order_Food_Toppings+=Order_Food_Toppings2
     toppingString=','.join(map(str, Order_Food_Toppings)) 
-    speechText= speechText +  str(Order_Food_Size) + " " + str(Order_Food) + "\n"+ toppingString
+    speechText= "\n "+ speechText +  str(Order_Food_Size) + " " + str(Order_Food) + "\n"+ toppingString
     
     Conjunction = parameters.get("conjunction-entity")    
 
@@ -155,7 +155,7 @@ def processOrderPizzaRequest(req):
     toppingString1 =','.join(map(str, Order_Food_Toppings1)) 
     
     if Conjunction != None:
-        speechText= speechText +  str(Order_Food_Size1) + " " + str(Order_Food1) + "\n"+ toppingString1
+        speechText= "\n "+speechText +  str(Order_Food_Size1) + " " + str(Order_Food1) + "\n"+ toppingString1
 
     pronoun = parameters.get("pronoun-Entity")
 
